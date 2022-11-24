@@ -1,19 +1,39 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from "react-dom/client";
+import { HashRouter } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
+import { routes } from "routes";
+import zhCN from "antd/lib/locale/zh_CN";
+import moment from "moment";
+import "moment/locale/zh-cn";
+
+import "styles/app.scss";
+
+import { ConfigProvider, theme } from "antd";
+
+moment.locale("zh-cn");
+
+export const App = () => {
+  const Routes = useRoutes(routes);
+  return Routes;
+};
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  document.getElementById("root") as HTMLElement
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+root.render(
+  <HashRouter>
+    <ConfigProvider
+      locale={zhCN}
+      theme={{
+        token: {
+          colorPrimary: "#6B1B9A",
+          borderRadius: 2,
+        },
+        algorithm: [theme.compactAlgorithm],
+      }}
+    >
+      <App />
+    </ConfigProvider>
+  </HashRouter>
+);
