@@ -27,7 +27,9 @@ root.render(
       locale={zhCN}
       theme={{
         token: {
-          colorPrimary: "#6B1B9A",
+          colorPrimary: "#e60000",
+          colorLink: "#FF5722",
+          colorLinkHover: "#e60000",
           borderRadius: 2,
         },
         algorithm: [theme.compactAlgorithm],

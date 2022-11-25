@@ -1,4 +1,4 @@
-import { Alert, Button, Layout, Result } from "antd";
+import { Button, Layout, Result } from "antd";
 import { useEntityStore } from "hooks/useEntityStore";
 import { request, useRequest } from "hooks/useRequest";
 import _ from "lodash";
@@ -18,7 +18,7 @@ const Category: { [key: string]: string } = {
 export const Interface: FC = () => {
   const { id } = useParams<{ id: string }>();
   const [response, setResponse] = useState<any>();
-  const { loading, run, data } = useRequest(
+  const { loading, run } = useRequest(
     (id) => request("/interface", "POST", { id }),
     {
       manual: true,

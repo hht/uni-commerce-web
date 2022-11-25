@@ -17,11 +17,18 @@ export const useStore = create<
 export const useEntityStore = (breadcrumb: string[]) => {
   const actionRef = useRef<ActionType>();
   const formRef = useRef<ProFormInstance>();
+  const { currentRow } = useStore((state) => state);
+  useEffect(() => {
+    useStore.setState({ actionRef, formRef });
+    return () => {
+      useStore.setState({ actionRef: undefined, formRef: undefined });
+    };
+  }, []);
   useEffect(() => {
     document.title = breadcrumb.length
-      ? `${breadcrumb[1]}.::.:联通B2B接口对接`
-      : "联通B2B接口对接";
+      ? `${breadcrumb[1]}.::.:联通商城B2B`
+      : "联通商城B2B";
     useUserInterfaceStore.setState({ breadcrumb });
   }, [breadcrumb]);
-  return { actionRef, formRef };
+  return { actionRef, formRef, currentRow };
 };

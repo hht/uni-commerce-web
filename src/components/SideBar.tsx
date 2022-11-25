@@ -4,20 +4,24 @@ import { ItemType } from "antd/lib/menu/hooks/useItems";
 import { FC, useCallback, useEffect } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useUserInterfaceStore } from "hooks/useUserInterface";
-import { TeamOutlined } from "@ant-design/icons";
+import { AppstoreOutlined, CommentOutlined } from "@ant-design/icons";
 import { last } from "lodash";
 
 const items: ItemType[] = [
   {
-    label: "订单管理",
-    key: "orders",
-    icon: <TeamOutlined />,
-    children: [{ label: "订单列表", key: "/orders" }],
+    label: "商城系统",
+    key: "b2b",
+    icon: <AppstoreOutlined />,
+    children: [
+      { label: "订单", key: "/b2b/orders" },
+      { label: "发货单", key: "/b2b/invoices" },
+      { label: "物流公司", key: "/b2b/logistics" },
+    ],
   },
   {
-    label: "接口调试",
+    label: "消息推送",
     key: "interface",
-    icon: <TeamOutlined />,
+    icon: <CommentOutlined />,
     children: [
       { label: "订单", key: "/interface/1" },
       { label: "发货单", key: "/interface/2" },
@@ -58,7 +62,7 @@ export const SideBar: FC = () => {
     [config]
   );
   if (location.pathname === "/") {
-    return <Navigate to="/orders" />;
+    return <Navigate to="/b2b/orders" />;
   }
   return config.initialized ? (
     <Sider trigger={null} collapsible collapsed={collapsed}>

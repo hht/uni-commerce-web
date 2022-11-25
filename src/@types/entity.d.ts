@@ -127,10 +127,12 @@ type Order = {
   drawBackPrice: number;
   companyAddress: string;
   orderTaxPrice: number;
+  invoice: Invoice[];
 };
 
 type Invoice = {
   sendOrderNo: string;
+  pSendOrderNo: string;
   state: string;
   sendState: number;
   logisticsType: number;
@@ -143,7 +145,22 @@ type Invoice = {
   totalPage: string;
   packingList: any;
   delivered?: Delivered;
+  orderNo: string;
+  boxs?: Box[];
 };
+
+type Box = {
+  id: string;
+  no: string;
+  note: string;
+  status: string;
+  box_num: string;
+  box_type: string;
+  goods_num: string;
+  boxInfoList: BoxItem[];
+};
+
+type BoxItem = { goods_name: string };
 
 type Delivered = {
   deliveredId: string;
@@ -166,3 +183,8 @@ interface EntityStore<T> {
   currentRow?: Partial<T>;
   onDismiss: () => void;
 }
+
+type Logistics = {
+  logisticsCom: string;
+  logisticsComNo: string;
+};

@@ -58,7 +58,6 @@ export function Table<T>({
           span: { xs: 24, sm: 12, md: 12, lg: 8, xl: 8, xxl: 6 },
         }}
         pagination={{
-          pageSize: 10,
           showSizeChanger: true,
           showQuickJumper: true,
         }}

@@ -17,7 +17,6 @@ export const AppLayout: FC = () => {
             alignItems: "center",
           }}
         >
-          <Avatar src={require("assets/images/logo.png")} size="large" />
           <div
             style={{
               paddingLeft: 12,
@@ -28,7 +27,7 @@ export const AppLayout: FC = () => {
                 "-1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5)",
             }}
           >
-            联通商城B2B对接测试系统
+            联通商城B2B对接测试
           </div>
         </div>
       </Header>
