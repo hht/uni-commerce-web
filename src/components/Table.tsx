@@ -7,7 +7,6 @@ import {
 import { message } from "antd";
 import { request } from "hooks/useRequest";
 import React, { ReactNode } from "react";
-import _ from "lodash";
 
 export function Table<T>({
   service,
@@ -62,7 +61,6 @@ export function Table<T>({
           showQuickJumper: true,
         }}
         toolBarRender={toolBarRender}
-        defaultSize="small"
         scroll={{ x: width }}
         {...rest}
       ></ProTable>

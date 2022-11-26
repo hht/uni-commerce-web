@@ -1,6 +1,5 @@
 import { ProColumns, ProTable } from "@ant-design/pro-components";
 import { Descriptions } from "antd";
-import _ from "lodash";
 import { FC } from "react";
 
 const columns: ProColumns<BoxItem>[] = [

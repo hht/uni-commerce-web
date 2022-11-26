@@ -63,28 +63,6 @@ body {
   }
 }
 
-.ant-upload {
-  .image-card {
-    background-size: cover;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    > div {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      background-color: rgba(0, 0, 0, 0.3);
-      color: white;
-    }
-  }
-}
-
 .ant-pro-table .ant-pro-table-search {
   margin-bottom: 4px;
 }
@@ -96,5 +74,9 @@ body {
 
 .linear-gradient {
   background: #039ce5;
-  background: linear-gradient(to left, #e6000066, #e60000) !important;
+  background: linear-gradient(to left, #bf360c, #e60000) !important;
+}
+
+.ant-table-expanded-row-fixed .ant-pro-card {
+  background-color: transparent !important;
 }

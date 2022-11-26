@@ -1,5 +1,5 @@
 import { RouteObject } from "react-router-dom";
-import { AppLayout } from "pages/AppLayout";
+import { AppLayout } from "layouts/app";
 import { Interface } from "pages/interface";
 import { Orders } from "pages/orders";
 import { Invoices } from "pages/invoices";

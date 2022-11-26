@@ -3,14 +3,14 @@ import { HashRouter } from "react-router-dom";
 import { useRoutes } from "react-router-dom";
 import { routes } from "routes";
 import zhCN from "antd/lib/locale/zh_CN";
-import moment from "moment";
-import "moment/locale/zh-cn";
+import * as dayjs from "dayjs";
+import "dayjs/locale/zh-cn";
 
 import "styles/app.scss";
 
 import { ConfigProvider, theme } from "antd";
 
-moment.locale("zh-cn");
+dayjs.locale("zh-cn");
 
 export const App = () => {
   const Routes = useRoutes(routes);
@@ -32,7 +32,7 @@ root.render(
           colorLinkHover: "#e60000",
           borderRadius: 2,
         },
-        algorithm: [theme.compactAlgorithm],
+        algorithm: [theme.defaultAlgorithm],
       }}
     >
       <App />

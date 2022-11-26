@@ -1,7 +1,7 @@
 import { ActionType, ProColumns } from "@ant-design/pro-components";
 import { Button, message } from "antd";
 import { Table } from "components/Table";
-import { useEntityStore } from "hooks/useEntityStore";
+import { useEntityStore, useStore } from "hooks/useEntityStore";
 import { request, useRequest } from "hooks/useRequest";
 import { FC, useRef } from "react";
 import { AppendLogistice } from "./components/AppendLogistics";
@@ -88,7 +88,9 @@ const expandedRowRender = (data: Invoice) => {
 export const Invoices: FC = () => {
   useEntityStore(["商城系统", "发货单列表"]);
   const actionRef = useRef<ActionType>();
-  const { run: getInvoice } = useRequest(
+  const { currentRow } = useStore();
+
+  const { loading, run: getInvoice } = useRequest(
     (p_sendOrderNo) => request("/invoice", "POST", { p_sendOrderNo }),
     {
       manual: true,
@@ -115,7 +117,7 @@ export const Invoices: FC = () => {
           dataIndex: "option",
           valueType: "option",
           fixed: "right",
-          width: 200,
+          width: 240,
 
           render: (_, record: Invoice) => (
             <>
@@ -123,7 +125,11 @@ export const Invoices: FC = () => {
                 type="link"
                 key="refresh"
                 size="small"
+                loading={
+                  currentRow?.sendOrderNo === record.sendOrderNo && loading
+                }
                 onClick={() => {
+                  useStore.setState({ currentRow: record });
                   getInvoice(record.pSendOrderNo);
                 }}
               >

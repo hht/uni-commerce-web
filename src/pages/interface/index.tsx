@@ -1,4 +1,4 @@
-import { Button, Layout, Result } from "antd";
+import { Button, Card, Result } from "antd";
 import { useEntityStore } from "hooks/useEntityStore";
 import { request, useRequest } from "hooks/useRequest";
 import _ from "lodash";
@@ -40,17 +40,15 @@ export const Interface: FC = () => {
     );
   }
   return (
-    <>
-      <Button loading={loading} type="primary" onClick={() => run(id)}>
-        {Category[id]}
-      </Button>
-      {response ? (
-        <Layout.Content
-          style={{ margin: "16px 0", padding: 16, backgroundColor: "white" }}
-        >
-          {JSON.stringify(response)}
-        </Layout.Content>
-      ) : null}
-    </>
+    <Card
+      title="消息推送接口"
+      extra={
+        <Button loading={loading} type="primary" onClick={() => run(id)}>
+          {`获取${Category[id]}信息`}
+        </Button>
+      }
+    >
+      {response ? JSON.stringify(response) : "暂无数据"}
+    </Card>
   );
 };

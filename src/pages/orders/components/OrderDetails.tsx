@@ -44,14 +44,17 @@ const columns: ProColumns<OrderDetails>[] = [
 
 export const OrderDetails: FC<{ data: Order }> = ({ data }) => {
   return (
-    <ProTable
-      pagination={false}
-      columns={columns}
-      search={false}
-      dataSource={data.orderDetails}
-      rowKey="detailId"
-      bordered
-      toolBarRender={false}
-    />
+    <div>
+      <ProTable
+        pagination={false}
+        columns={columns}
+        search={false}
+        dataSource={data.orderDetails}
+        rowKey="detailId"
+        bordered
+        toolBarRender={false}
+        size="small"
+      />
+    </div>
   );
 };

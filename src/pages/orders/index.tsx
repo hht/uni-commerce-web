@@ -81,7 +81,6 @@ export const Orders: FC = () => {
       actionRef={actionRef}
       expandable={{ expandedRowRender }}
       search={{
-        labelWidth: 120,
         span: { xs: 24, sm: 12, md: 12, lg: 8, xl: 8, xxl: 6 },
       }}
       actions={[
@@ -100,6 +99,7 @@ export const Orders: FC = () => {
                 size="small"
                 loading={fetching && currentRow?.orderNo === record.orderNo}
                 onClick={() => {
+                  useStore.setState({ currentRow: record });
                   getOrder(record.orderNo);
                 }}
               >
