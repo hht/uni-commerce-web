@@ -1,12 +1,8 @@
 import { ActionType, ProColumns } from "@ant-design/pro-components";
-import { Button, message } from "antd";
 import { Table } from "components/Table";
-import { useEntityStore, useStore } from "hooks/useEntityStore";
-import { request, useRequest } from "hooks/useRequest";
+import dayjs from "dayjs";
+import { useEntityStore } from "hooks/useEntityStore";
 import { FC, useRef } from "react";
-import { AppendLogistice } from "./components/AppendLogistics";
-import { ConfirmInvoice } from "./components/ConfirmInvoice";
-import { InvoiceDetails } from "./components/InvoiceDetails";
 
 const columns: ProColumns<Invoice>[] = [
   {
@@ -18,16 +14,18 @@ const columns: ProColumns<Invoice>[] = [
   },
   {
     title: "平台发货单号",
-    dataIndex: "pSendOrderNo",
+    dataIndex: "p_sendOrderNo",
     ellipsis: true,
     copyable: true,
     fixed: "left",
+    hideInSearch: true,
   },
   {
     title: "订单编号",
     dataIndex: "orderNo",
     ellipsis: true,
     copyable: true,
+    hideInSearch: true,
   },
   {
     title: "发货单状态",
@@ -39,6 +37,7 @@ const columns: ProColumns<Invoice>[] = [
       3: { text: "退回(服务订单)", status: "Error" },
       4: { text: "已撤回", color: "Default" },
     },
+    hideInSearch: true,
   },
   {
     title: "发货状态",
@@ -47,6 +46,7 @@ const columns: ProColumns<Invoice>[] = [
       0: { text: "未发货", status: "Warning" },
       1: { text: "已发货", status: "Success" },
     },
+    hideInSearch: true,
   },
   {
     title: "妥投状态",
@@ -56,6 +56,7 @@ const columns: ProColumns<Invoice>[] = [
       1: { text: "已妥投", status: "Success" },
       2: { text: "妥投驳回", status: "Error" },
     },
+    hideInSearch: true,
   },
 
   {
@@ -67,11 +68,13 @@ const columns: ProColumns<Invoice>[] = [
       2: { text: "全部收货", status: "Success" },
       3: { text: "拒收", status: "Error" },
     },
+    hideInSearch: true,
   },
   {
     title: "发货时间",
     dataIndex: "sendTime",
     valueType: "dateTime",
+    hideInSearch: true,
   },
   {
     title: "金额(含税)",
@@ -79,68 +82,31 @@ const columns: ProColumns<Invoice>[] = [
     valueType: "money",
     hideInSearch: true,
   },
+  {
+    title: "时间范围",
+    dataIndex: "duration",
+    valueType: "dateTimeRange",
+    hideInTable: true,
+    initialValue: [dayjs().subtract(1, "month"), dayjs()],
+    colSize: 2,
+  },
 ];
 
-const expandedRowRender = (data: Invoice) => {
-  return <InvoiceDetails data={data} />;
-};
-
-export const Invoices: FC = () => {
-  useEntityStore(["商城系统", "发货列表"]);
+export const InvoiceSummaries: FC = () => {
+  useEntityStore(["商城系统", "发货查询"]);
   const actionRef = useRef<ActionType>();
-  const { currentRow } = useStore();
 
-  const { loading, run: getInvoice } = useRequest(
-    (p_sendOrderNo) => request("/invoice", "POST", { p_sendOrderNo }),
-    {
-      manual: true,
-      onSuccess: () => {
-        message.success("更新发货单信息成功");
-        actionRef.current?.reload();
-      },
-    }
-  );
   return (
     <Table
-      service="/invoices"
+      service="/invoice-summaries"
       rowKey="sendOrderNo"
       columns={columns}
       actionRef={actionRef}
-      expandable={{ expandedRowRender }}
       search={{
         labelWidth: 120,
         span: { xs: 24, sm: 12, md: 12, lg: 8, xl: 8, xxl: 6 },
       }}
-      actions={[
-        {
-          title: "操作",
-          dataIndex: "option",
-          valueType: "option",
-          fixed: "right",
-          width: 240,
-
-          render: (_, record: Invoice) => (
-            <>
-              <Button
-                type="link"
-                key="refresh"
-                size="small"
-                loading={
-                  currentRow?.sendOrderNo === record.sendOrderNo && loading
-                }
-                onClick={() => {
-                  useStore.setState({ currentRow: record });
-                  getInvoice(record.pSendOrderNo);
-                }}
-              >
-                更新
-              </Button>
-              <ConfirmInvoice data={record} />
-              <AppendLogistice data={record}></AppendLogistice>
-            </>
-          ),
-        },
-      ]}
+      actions={undefined}
     ></Table>
   );
 };

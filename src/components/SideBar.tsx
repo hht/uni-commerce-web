@@ -13,9 +13,10 @@ const items: ItemType[] = [
     key: "b2b",
     icon: <AppstoreOutlined />,
     children: [
-      { label: "订单", key: "/b2b/orders" },
-      { label: "发货单", key: "/b2b/invoices" },
+      { label: "订单列表", key: "/b2b/orders" },
+      { label: "发货列表", key: "/b2b/invoices" },
       { label: "物流公司", key: "/b2b/logistics" },
+      { label: "发货查询", key: "/b2b/invoice-summaries" },
     ],
   },
   {
@@ -24,7 +25,7 @@ const items: ItemType[] = [
     icon: <CommentOutlined />,
     children: [
       { label: "订单", key: "/interface/1" },
-      { label: "发货单", key: "/interface/2" },
+      { label: "发货", key: "/interface/2" },
       { label: "退货", key: "/interface/3" },
       { label: "结算", key: "/interface/4" },
       { label: "地址", key: "/interface/5" },

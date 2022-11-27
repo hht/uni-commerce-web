@@ -23,7 +23,7 @@ export const Logistics: FC = () => {
   return (
     <Table
       service="/logistics"
-      rowKey="logisticsComNo"
+      rowKey="logisticsCom"
       columns={columns}
       search={false}
     ></Table>
