@@ -33,7 +33,7 @@ export const InvoiceDetails: FC<{ data: Invoice }> = ({ data }) => {
           columns={columns}
           search={false}
           dataSource={box.boxInfoList}
-          rowKey="detailId"
+          rowKey="id"
           bordered
           headerTitle="发货明细"
           toolBarRender={false}

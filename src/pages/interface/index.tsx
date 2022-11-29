@@ -48,7 +48,7 @@ export const Interface: FC = () => {
         </Button>
       }
     >
-      {response ? JSON.stringify(response) : "暂无数据"}
+      {response ? JSON.stringify(response) : ""}
     </Card>
   );
 };

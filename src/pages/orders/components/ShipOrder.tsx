@@ -20,7 +20,8 @@ export const ShipOrder: FC<{ order: Order }> = ({ order }) => {
   return (
     <DrawerForm<any>
       title="装箱发货"
-      trigger={<Button type="link">发货</Button>}
+      trigger={<Button type="link">装箱发货</Button>}
+      width={600}
       form={form}
       autoFocusFirstInput
       drawerProps={{
@@ -59,7 +60,7 @@ export const ShipOrder: FC<{ order: Order }> = ({ order }) => {
         });
       }}
     >
-      <ProFormText name="sendOrderNo" readonly />
+      <ProFormText label="装箱单号" name="sendOrderNo" />
       <ProFormSelect
         name="packingType"
         label="包装类型"

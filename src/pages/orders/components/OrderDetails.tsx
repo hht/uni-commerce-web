@@ -1,5 +1,6 @@
 import { ProColumns, ProTable } from "@ant-design/pro-components";
 import { FC } from "react";
+import Barcode from "react-barcode";
 
 const columns: ProColumns<OrderDetails>[] = [
   {
@@ -9,6 +10,21 @@ const columns: ProColumns<OrderDetails>[] = [
   {
     title: "条形码",
     dataIndex: "goods_code",
+    width: 120,
+    render: (__, record) => {
+      return record.goods_code ? (
+        <Barcode
+          value={record.goods_code ?? "http://www.163.com"}
+          height={24}
+          width={1}
+          margin={0}
+          displayValue={false}
+          marginTop={4}
+        />
+      ) : (
+        "-"
+      );
+    },
   },
   {
     title: "商品名称",

@@ -14,6 +14,9 @@ import { baseUrl, request } from "hooks/useRequest";
 import { uniq } from "lib/utils";
 import { FC } from "react";
 
+const mobileRegx =
+  /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
+
 const onChange = ({
   file,
   fileList,
@@ -43,6 +46,7 @@ export const ConfirmInvoice: FC<{ data: Invoice }> = ({ data }) => {
       title="妥投"
       trigger={<Button type="link">妥投</Button>}
       form={form}
+      width={600}
       autoFocusFirstInput
       drawerProps={{
         destroyOnClose: true,
@@ -83,7 +87,17 @@ export const ConfirmInvoice: FC<{ data: Invoice }> = ({ data }) => {
         <ProFormText name="p_sendOrderNo" readonly label="平台发货单号" />
       </ProFormGroup>
       <ProFormText name="deliveredName" label="妥投人姓名" required />
-      <ProFormText name="deliveredMobile" label="妥投人电话号码" required />
+      <ProFormText
+        name="deliveredMobile"
+        label="妥投人电话号码"
+        rules={[
+          {
+            required: true,
+            pattern: mobileRegx,
+            message: "请输入正确的电话号码",
+          },
+        ]}
+      />
       <ProFormDateTimePicker
         name="deliveredTime"
         label="妥投时间"
@@ -91,7 +105,18 @@ export const ConfirmInvoice: FC<{ data: Invoice }> = ({ data }) => {
       ></ProFormDateTimePicker>
       <ProFormTextArea name="remark" label="备注"></ProFormTextArea>
       <ProFormText name="signer" label="签收人姓名" required />
-      <ProFormText name="signMobile" label="签收人电话号码" required />
+      <ProFormText
+        name="signMobile"
+        label="签收人电话号码"
+        required
+        rules={[
+          {
+            required: true,
+            pattern: mobileRegx,
+            message: "请输入正确的电话号码",
+          },
+        ]}
+      />
       <Typography.Title level={5}>上传附件</Typography.Title>
       <ProCard bordered>
         <ProFormUploadButton

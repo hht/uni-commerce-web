@@ -4,7 +4,7 @@ import {
   ProFormList,
   ProFormTextArea,
 } from "@ant-design/pro-components";
-import { Button, Card, Form, message, Typography } from "antd";
+import { Alert, Button, Card, Form, message, Typography } from "antd";
 import { request } from "hooks/useRequest";
 import { uniq } from "lib/utils";
 import { FC } from "react";
@@ -17,6 +17,7 @@ export const AppendLogistice: FC<{ data: Invoice }> = ({ data }) => {
       title="物流信息"
       trigger={<Button type="link">添加物流</Button>}
       form={form}
+      width={600}
       autoFocusFirstInput
       drawerProps={{
         destroyOnClose: true,
@@ -44,8 +45,13 @@ export const AppendLogistice: FC<{ data: Invoice }> = ({ data }) => {
         });
       }}
     >
+      <Alert
+        description="一次可提交多个物流信息"
+        showIcon
+        type="warning"
+        style={{ marginBottom: 8 }}
+      ></Alert>
       <Typography.Title level={5}>物流信息</Typography.Title>
-
       <ProFormList
         itemRender={({ listDom, action }, { record }) => {
           return (

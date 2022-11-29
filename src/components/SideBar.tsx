@@ -4,7 +4,7 @@ import { ItemType } from "antd/lib/menu/hooks/useItems";
 import { FC, useCallback, useEffect } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useUserInterfaceStore } from "hooks/useUserInterface";
-import { AppstoreOutlined, CommentOutlined } from "@ant-design/icons";
+import { AppstoreOutlined, ApiOutlined } from "@ant-design/icons";
 import { last } from "lodash";
 
 const items: ItemType[] = [
@@ -22,7 +22,7 @@ const items: ItemType[] = [
   {
     label: "消息推送",
     key: "interface",
-    icon: <CommentOutlined />,
+    icon: <ApiOutlined />,
     children: [
       { label: "订单", key: "/interface/1" },
       { label: "发货", key: "/interface/2" },
