@@ -4,7 +4,7 @@ import { message } from "antd";
 import axios, { AxiosResponse } from "axios";
 import { omit } from "lodash";
 
-export const baseUrl = "http://localhost:3000";
+export const baseUrl = ".";
 
 axios.interceptors.request.use(
   (config) => {
