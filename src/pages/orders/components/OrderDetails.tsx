@@ -14,7 +14,7 @@ const columns: ProColumns<OrderDetails>[] = [
     render: (__, record) => {
       return record.goods_code ? (
         <Barcode
-          value={record.goods_code ?? "http://www.163.com"}
+          value={record.goods_code}
           height={24}
           width={1}
           margin={0}

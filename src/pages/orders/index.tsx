@@ -89,7 +89,7 @@ export const Orders: FC = () => {
           dataIndex: "option",
           valueType: "option",
           fixed: "right",
-          width: 160,
+          width: 200,
 
           render: (_, record: Order) => (
             <>
